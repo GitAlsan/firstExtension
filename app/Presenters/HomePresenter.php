@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-use GitAlsan\Test\DI\TestExtension;
+use GitAlsan\Test\TestExtension;
 use Nette;
 
 

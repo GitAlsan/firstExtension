@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace GitAlsan\Test\DI;
+namespace GitAlsan\Test;
 
 use Nette\Application\UI\Presenter;
 use Nette\DI\CompilerExtension;
