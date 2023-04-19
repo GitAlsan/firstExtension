@@ -8,11 +8,19 @@ use Alsan\Test\TestExtension;
 use Nette;
 
 
-final class HomePresenter extends Nette\Application\UI\Presenter
+final class HomePresenter extends BasePresenter
 {
+	public function startup()
+	{
+		parent::startup();
+
+		// check - is logged in
+		$test = new TestExtension();
+		$test->checkUserRole($this->user, 'AdminAudio', $this);
+	}
+
 	public function renderDefault(): void
 	{
-		$test = new TestExtension();
-		bdump($test);
+
 	}
 }
