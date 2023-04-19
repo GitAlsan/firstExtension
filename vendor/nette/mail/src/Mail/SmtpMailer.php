@@ -35,6 +35,7 @@ class SmtpMailer implements Mailer
 	public function __construct(
 		private string $host,
 		private string $username,
+		#[\SensitiveParameter]
 		private string $password,
 		private ?int $port = null,
 		private ?string $encryption = null,
@@ -72,6 +73,10 @@ class SmtpMailer implements Mailer
 	{
 		$tmp = clone $mail;
 		$tmp->setHeader('Bcc', null);
+		if (!$tmp->getHeader('To') && !$tmp->getHeader('Cc')) {
+			// missing recipient headers make some mailers (e.g., sendmail) nervous -> set 'To' like many MTAs do
+			$tmp->setHeader('To', 'undisclosed-recipients: ;');
+		}
 
 		$data = $this->signer
 			? $this->signer->generateSignedMessage($tmp)

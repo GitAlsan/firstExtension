@@ -101,6 +101,19 @@ class Filters
 
 
 	/**
+	 * Escapes a certain special character.
+	 */
+	public static function escapeHtmlChar($s, string $char): string
+	{
+		return str_replace(
+			$char,
+			htmlspecialchars($char, ENT_QUOTES | ENT_HTML5),
+			(string) $s,
+		);
+	}
+
+
+	/**
 	 * Escapes string for use everywhere inside XML (except for comments and tags).
 	 */
 	public static function escapeXml($s): string
@@ -170,11 +183,33 @@ class Filters
 
 
 	/**
+	 * Escapes HTML for usage in <script type=text/html>
+	 */
+	public static function escapeHtmlRawTextHtml($s): string
+	{
+		if ($s instanceof HtmlStringable || $s instanceof Nette\HtmlStringable) {
+			return str_ireplace('</script', '&lt;/script', $s->__toString());
+		}
+
+		return htmlspecialchars((string) $s, ENT_QUOTES | ENT_HTML5 | ENT_SUBSTITUTE, 'UTF-8');
+	}
+
+
+	/**
 	 * Converts JS and CSS for usage in <script> or <style>
 	 */
 	public static function convertJSToHtmlRawText($s): string
 	{
 		return preg_replace('#</(script|style)#i', '<\/$1', (string) $s);
+	}
+
+
+	/**
+	 * Converts HTML for usage in <script type=text/html>
+	 */
+	public static function convertHtmlToHtmlRawText(string $s): string
+	{
+		return preg_replace('#<(/?)script#i', '&lt;$1script', $s);
 	}
 
 

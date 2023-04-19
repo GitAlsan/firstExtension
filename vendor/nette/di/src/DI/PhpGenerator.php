@@ -23,11 +23,8 @@ class PhpGenerator
 {
 	use Nette\SmartObject;
 
-	/** @var ContainerBuilder */
-	private $builder;
-
-	/** @var string */
-	private $className;
+	private ContainerBuilder $builder;
+	private ?string $className = null;
 
 
 	public function __construct(ContainerBuilder $builder)
@@ -104,7 +101,7 @@ declare(strict_types=1);
 			return $method;
 
 		} catch (\Throwable $e) {
-			throw new ServiceCreationException("Service '$name': " . $e->getMessage(), 0, $e);
+			throw new ServiceCreationException(sprintf("[%s]\n%s", $def->getDescriptor(), $e->getMessage()), 0, $e);
 		}
 	}
 
@@ -130,7 +127,7 @@ declare(strict_types=1);
 				switch (true) {
 					case $entity[1][0] === '$': // property getter, setter or appender
 						$name = substr($entity[1], 1);
-						if ($append = (substr($name, -2) === '[]')) {
+						if ($append = (str_ends_with($name, '[]'))) {
 							$name = substr($name, 0, -2);
 						}
 
@@ -143,7 +140,7 @@ declare(strict_types=1);
 
 					case $entity[0] instanceof Statement:
 						$inner = $this->formatPhp('?', [$entity[0]]);
-						if (substr($inner, 0, 4) === 'new ') {
+						if (str_starts_with($inner, 'new ')) {
 							$inner = "($inner)";
 						}
 
@@ -186,29 +183,6 @@ declare(strict_types=1);
 			}
 		});
 		return (new Php\Dumper)->format($statement, ...$args);
-	}
-
-
-	/**
-	 * Converts parameters from Definition to PhpGenerator.
-	 * @return Php\Parameter[]
-	 */
-	public function convertParameters(array $parameters): array
-	{
-		$res = [];
-		foreach ($parameters as $k => $v) {
-			$tmp = explode(' ', is_int($k) ? $v : $k);
-			$param = $res[] = new Php\Parameter(end($tmp));
-			if (!is_int($k)) {
-				$param->setDefaultValue($v);
-			}
-
-			if (isset($tmp[1])) {
-				$param->setType($tmp[0]);
-			}
-		}
-
-		return $res;
 	}
 
 

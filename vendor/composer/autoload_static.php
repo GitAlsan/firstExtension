@@ -11,10 +11,6 @@ class ComposerStaticInitbaffb8a8445739b6af190f33738c6458
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
-        array (
-            'Symfony\\Thanks\\' => 15,
-        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -22,10 +18,6 @@ class ComposerStaticInitbaffb8a8445739b6af190f33738c6458
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Thanks\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/thanks/src',
-        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -359,14 +351,12 @@ class ComposerStaticInitbaffb8a8445739b6af190f33738c6458
         'Nette\\DI\\Definitions\\Statement' => __DIR__ . '/..' . '/nette/di/src/DI/Definitions/Statement.php',
         'Nette\\DI\\DependencyChecker' => __DIR__ . '/..' . '/nette/di/src/DI/DependencyChecker.php',
         'Nette\\DI\\DynamicParameter' => __DIR__ . '/..' . '/nette/di/src/DI/DynamicParameter.php',
-        'Nette\\DI\\Extensions\\ConstantsExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/ConstantsExtension.php',
         'Nette\\DI\\Extensions\\DIExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/DIExtension.php',
         'Nette\\DI\\Extensions\\DecoratorExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/DecoratorExtension.php',
         'Nette\\DI\\Extensions\\DefinitionSchema' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/DefinitionSchema.php',
         'Nette\\DI\\Extensions\\ExtensionsExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/ExtensionsExtension.php',
         'Nette\\DI\\Extensions\\InjectExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/InjectExtension.php',
         'Nette\\DI\\Extensions\\ParametersExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/ParametersExtension.php',
-        'Nette\\DI\\Extensions\\PhpExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/PhpExtension.php',
         'Nette\\DI\\Extensions\\SearchExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/SearchExtension.php',
         'Nette\\DI\\Extensions\\ServicesExtension' => __DIR__ . '/..' . '/nette/di/src/DI/Extensions/ServicesExtension.php',
         'Nette\\DI\\Helpers' => __DIR__ . '/..' . '/nette/di/src/DI/Helpers.php',
@@ -599,6 +589,7 @@ class ComposerStaticInitbaffb8a8445739b6af190f33738c6458
         'Nette\\Utils\\IHtmlString' => __DIR__ . '/..' . '/nette/utils/src/compatibility.php',
         'Nette\\Utils\\Image' => __DIR__ . '/..' . '/nette/utils/src/Utils/Image.php',
         'Nette\\Utils\\ImageException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
+        'Nette\\Utils\\ImageType' => __DIR__ . '/..' . '/nette/utils/src/Utils/ImageType.php',
         'Nette\\Utils\\Json' => __DIR__ . '/..' . '/nette/utils/src/Utils/Json.php',
         'Nette\\Utils\\JsonException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Utils\\ObjectHelpers' => __DIR__ . '/..' . '/nette/utils/src/Utils/ObjectHelpers.php',

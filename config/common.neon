@@ -17,7 +17,7 @@ di:
         tags: no
 
 extensions:
-    test: Alsan\Test\TestExtension
+    test: GitAlsan\Test\TestExtension
 
 test:
     postsPerPage: 10
