@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-use Alsan\Test\TestExtension;
+use GitAlsan\Test\DI\TestExtension;
 use Nette;
 
 
@@ -21,6 +21,6 @@ final class HomePresenter extends BasePresenter
 
 	public function renderDefault(): void
 	{
-
+		bdump('GIT - Test branch');
 	}
 }

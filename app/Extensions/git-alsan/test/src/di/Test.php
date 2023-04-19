@@ -1,8 +1,7 @@
 <?php declare(strict_types = 1);
 
-namespace Alsan\Test;
+namespace GitAlsan\Test\DI;
 
-use Nette\Application\Helpers;
 use Nette\Application\UI\Presenter;
 use Nette\DI\CompilerExtension;
 use Nette\Schema\Schema;
@@ -32,12 +31,10 @@ class TestExtension extends CompilerExtension
 				$presenter->flashMessage('Byl jste odhlášen kvůli nečinnosti. Přihlaste se znovu.', 'danger');
 			}
 			//$presenter->redirect('Sign:in', ['backlink' => $presenter->storeRequest()]);
-			bdump('Nepřihlášený uživatel');
 		}
 		elseif (!$user->isAllowed($role, 'view')) {
 			$presenter->flashMessage('Nedostatečná práva.', 'success');
 			//$presenter->redirect('Sign:wrongRights');
-			bdump('Nedostatečná práva');
 		}
 	}
 }

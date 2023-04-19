@@ -19,13 +19,11 @@ use Nette\DI\DynamicParameter;
 final class ParametersExtension extends Nette\DI\CompilerExtension
 {
 	/** @var string[] */
-	public $dynamicParams = [];
+	public array $dynamicParams = [];
 
 	/** @var string[][] */
-	public $dynamicValidators = [];
-
-	/** @var array */
-	private $compilerConfig;
+	public array $dynamicValidators = [];
+	private array $compilerConfig;
 
 
 	public function __construct(array &$compilerConfig)
@@ -47,12 +45,8 @@ final class ParametersExtension extends Nette\DI\CompilerExtension
 				: new DynamicParameter((new Nette\PhpGenerator\Dumper)->format('$this->parameters[?]', $key));
 		}
 
-		$builder->parameters = Nette\DI\Helpers::expand($params, $params, true);
-
-		// expand all except 'services'
-		$slice = array_diff_key($this->compilerConfig, ['services' => 1]);
-		$slice = Nette\DI\Helpers::expand($slice, $builder->parameters);
-		$this->compilerConfig = $slice + $this->compilerConfig;
+		$builder->parameters = Nette\DI\Helpers::expand($params, $params, recursive: true);
+		$this->compilerConfig = Nette\DI\Helpers::expand($this->compilerConfig, $builder->parameters);
 	}
 
 
