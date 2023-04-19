@@ -1,4 +1,4 @@
-Nette Web Project (EDIT from GitHub)
+Nette Web Project (DEV)
 =================
 
 This is a simple, skeleton application using the [Nette](https://nette.org). This is meant to
